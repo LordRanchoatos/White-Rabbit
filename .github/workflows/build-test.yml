@@ -1,0 +1,28 @@
+name: Build and Test
+on:
+    pull_request:
+      branches:
+        - 'develop'
+        - 'main'
+        - 'hotfix/**'
+        - 'release/**'
+jobs:
+    build-test:
+        runs-on: ubuntu-20.04
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v2
+              with:
+                  node-version: '16.10.0'
+            - name: Setup PNPM
+              uses: pnpm/action-setup@v2.2.1
+              with:
+                version: 6.x
+            - name: Install dependencies
+              run: pnpm install
+            - name: Lint Code
+              run: pnpm lint
+            - name: Build and Compile Typescript
+              run: pnpm build
+            - name: Run test cases
+              run: pnpm test
