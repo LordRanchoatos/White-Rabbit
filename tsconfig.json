@@ -12,6 +12,6 @@
         "moduleResolution": "node",
         "resolveJsonModule": true
     },
-    "include": ["src/**/*.ts"],
+    "include": ["src/**/*.ts", "src/app/events/Welcome.ts"],
     "exclude": ["node_modules"]
 }
