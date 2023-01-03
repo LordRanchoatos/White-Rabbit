@@ -4,6 +4,56 @@ import { TextChannel } from 'discord.js';
 import { DiscordEvent } from '../types/discord/DiscordEvent';
 
 const channelId = '997872691572916306';
+
+client.on('interactionCreate', async (interaction) => {
+    if (interaction.isButton()) {
+      const role = interaction.guild.roles.cache.get(
+        ROLES[interaction.customId.toUpperCase()] // the button's custom Id MUST match your ROLES property defined above
+      );
+  
+      if (!role)
+        return interaction.reply({ content: 'Role not found', ephemeral: true });
+  
+      const hasRole = interaction.member.roles.cache.has(role.id);
+      console.log(hasRole);
+  
+      if (hasRole)
+        return interaction.member.roles
+          .remove(role)
+          .then((member) =>
+            interaction.reply({
+              content: `The ${role} role was removed to you ${member}`,
+              ephemeral: true,
+            })
+          )
+          .catch((err) => {
+            console.log(err);
+            return interaction.reply({
+              content: `Something went wrong. The ${role} role was not removed to you ${member}`,
+              ephemeral: true,
+            });
+          });
+      else
+        return interaction.member.roles
+          .add(role)
+          .then((member) =>
+            interaction.reply({
+              content: `The ${role} role was added to you ${member}`,
+              ephemeral: true,
+            })
+          )
+          .catch((err) => {
+            console.log(err);
+            return interaction.reply({
+              content: `Something went wrong. The ${role} role was not added to you ${member}`,
+              ephemeral: true,
+            });
+          });
+    }
+  });
+  
+
+
 export default class implements DiscordEvent {
   name = 'ready';
   once = true;
@@ -27,10 +77,13 @@ export default class implements DiscordEvent {
         channel.send({
             content: 'Select the project you would like  to contribute to: ',
             components: [
-                new ActionRowBuilder<MessageActionRowComponentData | MessageActionRowComponentBuilder>().setComponents(
+                new ActionRowBuilder<any>().setComponents(
                     new  ButtonBuilder().setCustomId('mhstarter').setLabel('Mad Hatter').setStyle(ButtonStyle.Secondary),
-                )
-            ]
+                ),
+                new ActionRowBuilder<any>().setComponents(
+                    new  ButtonBuilder().setCustomId('govstarter').setLabel('Governator').setStyle(ButtonStyle.Secondary),
+                ),
+            ],
         })
       });
     
