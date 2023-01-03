@@ -1,4 +1,4 @@
-import { Client, Guild } from 'discord.js';
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, Client, Guild } from 'discord.js';
 import Log, { LogUtils } from '../utils/Log';
 import { TextChannel } from 'discord.js';
 import { DiscordEvent } from '../types/discord/DiscordEvent';
@@ -24,6 +24,14 @@ export default class implements DiscordEvent {
         const welcomeRole = member.guild.roles.cache.find(role => role.name === 'Explorer');
         member.roles.add(welcomeRole);
         // member.guild.channels.cache.get('YOU_CHANNEL_ID').send(`Welcome <@${member.user.id}> to our server! Make sure to check out the rules channel!`)
+        channel.send({
+            content: 'Select the project you would like  to contribute to: ',
+            components: [
+                new ActionRowBuilder<MessageActionRowComponentData | MessageActionRowComponentBuilder>().setComponents(
+                    new  ButtonBuilder().setCustomId('mhstarter').setLabel('Mad Hatter').setStyle(ButtonStyle.Secondary),
+                )
+            ]
+        })
       });
     
     } catch (e) {
