@@ -1,5 +1,5 @@
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle, Client, Guild } from 'discord.js';
-import Log, { LogUtils } from '../utils/Log';
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, Client } from 'discord.js';
+import { LogUtils } from '../utils/Log';
 import { TextChannel } from 'discord.js';
 import { DiscordEvent } from '../types/discord/DiscordEvent';
 
