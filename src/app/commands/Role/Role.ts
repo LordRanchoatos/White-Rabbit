@@ -12,7 +12,7 @@ import discordServerIds from '../../service/constants/discordServerIds';
 import Log, { LogUtils } from '../../utils/Log';
 import { command } from '../../utils/SentryUtils';
 
-export default class GuestPass extends SlashCommand {
+export default class madhatterStarter extends SlashCommand {
   constructor(creator: SlashCreator) {
     super(creator, {
       name: 'madhatter',
