@@ -18,14 +18,6 @@ export default class madhatterStarter extends SlashCommand {
       name: 'madhatter',
       description: 'To get the Mad Hatter starter Role',
       guildIDs: [discordServerIds.kingPin, discordServerIds.discordBotGarage],
-      options: [
-        {
-          type: CommandOptionType.USER,
-          name: 'developer',
-          description: 'Grant Mad Hatter starter to:',
-          required: true,
-        },
-      ],
       throttling: {
         usages: 2,
         duration: 1,
@@ -41,7 +33,7 @@ export default class madhatterStarter extends SlashCommand {
 		
     Log.info('/mad hatter starter');
     const guild = await client.guilds.fetch(ctx.guildID);
-    const guestUser = await guild.members.fetch(ctx.options.developer);
+    const guestUser = await guild.members.fetch(ctx.user.id);
 
     if (guestUser.user.bot) {
       return ctx.send('Bots can\'t have this role');
