@@ -20,14 +20,14 @@ export default class implements DiscordEvent {
     try {
       client.on('guildMemberAdd', (member: any) => {
         // console.log(member);
-        const message = `Welcome to the garage, Let's get you started <@${member.id}>, You will have been assigned the Explorer role.`;
+        const message = `<@${member.id}> Welcome to the garage, Let's get you down the Rabbit hole: `;
         const channel = member.guild.channels.cache.get(channelId) as TextChannel;
         channel.send(message);
         const welcomeRole = member.guild.roles.cache.find(role => role.name === 'Explorer');
         member.roles.add(welcomeRole);
         // member.guild.channels.cache.get('YOU_CHANNEL_ID').send(`Welcome <@${member.user.id}> to our server! Make sure to check out the rules channel!`)
         channel.send({
-          content: 'Select the project you would like  to contribute to: ',
+          content: 'You are only a few steps away. 1.Select the project you would like to contribute to: this will add the mhstarter role to you. 2. setup your bot link here!<discord developar portal link>. To invite your Bot into the garage send the bot invite link to @nonsensetwice. 3. Run "/mhlauncher" with your discord id. to get the launcher Role. ',
           components: [
             new ActionRowBuilder<any>().setComponents(
               new ButtonBuilder().setCustomId('mhstarter').setLabel('Mad Hatter').setStyle(ButtonStyle.Secondary),
@@ -40,7 +40,7 @@ export default class implements DiscordEvent {
       });
     
     } catch (e) {
-      LogUtils.logError('Error processing event ready', e);
+      LogUtils.logError('Error, coulding process welcome event', e);
     }
 
   }
