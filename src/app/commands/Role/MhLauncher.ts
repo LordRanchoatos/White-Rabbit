@@ -63,7 +63,7 @@ export default class Coordinape extends SlashCommand {
     const botId = await guild.members.fetch(ctx.options.id);
 
     if (!botId.user.bot) {
-      return ctx.send('ID must be your bot id in the garage!');
+      return ctx.send('Entry must be your bot in the garage!');
     }
 
     try {
