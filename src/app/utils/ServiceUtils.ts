@@ -27,9 +27,14 @@ import MongoDbUtils from '../utils/MongoDbUtils';
 
 
 const ServiceUtils = {
-  getGuestRole(roles: RoleManager): Role {
+  getGuestRoleMhstarter(roles: RoleManager): Role {
     return roles.cache.find((role) => {
       return role.id === roleIds.mhstarter;
+    });
+  },
+  getGuestRoleMhKlauncher(roles: RoleManager): Role {
+    return roles.cache.find((role) => {
+      return role.id === roleIds.kpmhlauncher;
     });
   },
 };
