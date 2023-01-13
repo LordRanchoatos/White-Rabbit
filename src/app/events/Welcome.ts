@@ -10,12 +10,6 @@ export default class implements DiscordEvent {
   name = 'ready';
   once = true;
 
-  // functions on entry to the server 
-  // welcome message: 
-  // 1. automatically asign a role on joining. 
-  // send option to select project, 
-  // asign role tag.
-
   async execute(client: Client): Promise<any> {
     try {
       client.on('guildMemberAdd', (member: any) => {
