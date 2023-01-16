@@ -44,7 +44,7 @@ export default class madhatterStarter extends SlashCommand {
     } catch (e) {
       LogUtils.logError('failed to mad hatter starter to user', e);
     }
-    await ctx.send(`<@${ctx.user.id}> You now have the Mad Hatter Starter Role`);
+    await ctx.send({ content: `<@${ctx.user.id}> You now have the Mad Hatter Starter Role`, ephemeral: true });
   }
 }
 
