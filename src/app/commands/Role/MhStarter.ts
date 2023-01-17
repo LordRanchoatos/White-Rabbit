@@ -22,7 +22,23 @@ export default class madhatterStarter extends SlashCommand {
         usages: 2,
         duration: 1,
       },
-      defaultPermission: true,
+      defaultPermission: false,
+      permissions: {
+        [discordServerIds.kingPin]: [
+          {
+            type: ApplicationCommandPermissionType.ROLE,
+            id: roleIds.kpexplorer,
+            permission: true,
+          },
+        ],
+        [discordServerIds.discordBotGarage]: [
+          {
+            type: ApplicationCommandPermissionType.ROLE,
+            id: roleIds.explorer,
+            permission: true,
+          },
+        ],
+      },
     });
   }
   
