@@ -87,6 +87,7 @@ export default class madhatterStarter extends SlashCommand {
     if (guestUser.user.bot) {
       return ctx.send('Bots can\'t have this role');
     }
+    
 
     try {
       await addmhstarterToUser(guestUser);
@@ -96,4 +97,3 @@ export default class madhatterStarter extends SlashCommand {
     await ctx.send({ embeds: [exampleEmbed], ephemeral: true });
   }
 }
-
