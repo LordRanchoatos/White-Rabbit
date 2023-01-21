@@ -3,7 +3,7 @@ import { LogUtils } from '../utils/Log';
 import { TextChannel } from 'discord.js';
 import { DiscordEvent } from '../types/discord/DiscordEvent';
 
-const channelId = '997872691572916306';
+const channelId = process.env.DISCORD_CHANNEL_WELCOME_KP;
 
 
 export default class implements DiscordEvent {
@@ -11,25 +11,46 @@ export default class implements DiscordEvent {
   once = true;
 
   async execute(client: Client): Promise<any> {
+    const infoEmbed = {
+      color: 0x0099ff,
+      title: 'Discord Developer Portal',
+      url: 'https://discord.com/developers/applications',
+      author: {
+        name: 'White Rabbit',
+        icon_url: 'https://i.imgur.com/AfFp7pu.png',
+        url: 'https://i.imgur.com/AfFp7pu.png',
+      },
+      description: 'GETTING STARTED',
+      fields: [
+        {
+          name: 'EXPLORER',
+          value: 'You have been asigned the explorer tag.',
+        },
+        {
+          name: 'Mad Hatter',
+          value: 'To Contribute to Mad Hatter bot pro: run the "/madhatter" command.',
+        },
+        {
+          name: 'MHStarter',
+          value: 'You will be asigned the mhstarter tag',
+        },
+      ],
+      timestamp: new Date().toISOString(),
+      footer: {
+        text: 'white Rabbit',
+        icon_url: 'https://i.imgur.com/AfFp7pu.png',
+      },
+    };
+
     try {
       client.on('guildMemberAdd', (member: any) => {
-        // console.log(member);
-        const message = `<@${member.id}> Welcome to the garage, Let's get you down the Rabbit hole: `;
+        const message = `<@${member.id}> Welcome to the garage, Let's get you down the Rabbit hole! `;
         const channel = member.guild.channels.cache.get(channelId) as TextChannel;
         channel.send(message);
-        const welcomeRole = member.guild.roles.cache.find(role => role.name === 'Explorer');
-        member.roles.add(welcomeRole);
-        // member.guild.channels.cache.get('YOU_CHANNEL_ID').send(`Welcome <@${member.user.id}> to our server! Make sure to check out the rules channel!`)
+        const userRole = member.guild.roles.cache.find(role => role.name === 'Explorer');
+        member.roles.add(userRole);
         channel.send({
-          content: 'You are only a few steps away. 1.Select the project you would like to contribute to: this will add the mhstarter role to you. 2. setup your bot link here!<discord developar portal link>. To invite your Bot into the garage send the bot invite link to @nonsensetwice. 3. Run "/mhlauncher" with your discord id. to get the launcher Role. ',
-          components: [
-            new ActionRowBuilder<any>().setComponents(
-              new ButtonBuilder().setCustomId('mhstarter').setLabel('Mad Hatter').setStyle(ButtonStyle.Secondary),
-            ),
-            new ActionRowBuilder<any>().setComponents(
-              new ButtonBuilder().setCustomId('govstarter').setLabel('Governator').setStyle(ButtonStyle.Secondary),
-            ),
-          ],
+          embeds: [infoEmbed],
         });
       });
     

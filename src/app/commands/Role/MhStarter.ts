@@ -45,7 +45,7 @@ export default class madhatterStarter extends SlashCommand {
 
 	@command
   async run(ctx: CommandContext): Promise<any> {
-    const exampleEmbed = {
+    const infoEmbed = {
       color: 0x0099ff,
       title: 'Discord Developer Portal',
       url: 'https://discord.com/developers/applications',
@@ -65,7 +65,15 @@ export default class madhatterStarter extends SlashCommand {
         },
         {
           name: 'Step B: Get your bot into the server.',
-          value: 'Send your bot invite to the one of the Mad Hatter Management.',
+          value: 'Run "/mhlauncher" command with your bot invite link ',
+        },
+        {
+          name: 'Next',
+          value:  'Your Bot will be added to the server by someone in the MHMT',
+        },
+        {
+          name: 'Mad Hatter setup',
+          value:  'Fork the mad hatter bot repository <Madhatterlink> and run the and',
         },
       ],
       image: {
@@ -94,6 +102,6 @@ export default class madhatterStarter extends SlashCommand {
     } catch (e) {
       LogUtils.logError('failed to mad hatter starter to user', e);
     }
-    await ctx.send({ embeds: [exampleEmbed], ephemeral: true });
+    await ctx.send({ embeds: [infoEmbed], ephemeral: true });
   }
 }
