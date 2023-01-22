@@ -22,28 +22,11 @@ export default class madhatterStarter extends SlashCommand {
         usages: 2,
         duration: 1,
       },
-      defaultPermission: false,
-      permissions: {
-        [discordServerIds.kingPin]: [
-          {
-            type: ApplicationCommandPermissionType.ROLE,
-            id: roleIds.kpexplorer,
-            permission: true,
-          },
-        ],
-        [discordServerIds.discordBotGarage]: [
-          {
-            type: ApplicationCommandPermissionType.ROLE,
-            id: roleIds.explorer,
-            permission: true,
-          },
-        ],
-      },
+      defaultPermission: true,
     });
   }
   
 
-	@command
   async run(ctx: CommandContext): Promise<any> {
     const infoEmbed = {
       color: 0x0099ff,
@@ -99,9 +82,9 @@ export default class madhatterStarter extends SlashCommand {
 
     try {
       await addmhstarterToUser(guestUser);
+      await ctx.send({ embeds: [infoEmbed], ephemeral: true });
     } catch (e) {
-      LogUtils.logError('failed to mad hatter starter to user', e);
+      LogUtils.logError('failed to mhstarter to user', e);
     }
-    await ctx.send({ embeds: [infoEmbed], ephemeral: true });
   }
 }
