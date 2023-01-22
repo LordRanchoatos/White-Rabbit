@@ -22,7 +22,7 @@ export default class Coordinape extends SlashCommand {
       options: [
         {
           type: CommandOptionType.SUB_COMMAND_GROUP,
-          name: 'bot',
+          name: 'bot invite',
           description: 'Grant mhlauncher role to:',
           required: true,
         },
