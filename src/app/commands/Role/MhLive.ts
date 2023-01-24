@@ -10,6 +10,7 @@ import roleIds from '../../service/constants/roleIds';
 import discordServerIds from '../../service/constants/discordServerIds';
 import Log, { LogUtils } from '../../utils/Log';
 import { command } from '../../utils/SentryUtils';
+import { getinfo } from '../../../app/service/github/checkRepo'
 
 export default class GuestPass extends SlashCommand {
 	constructor(creator: SlashCreator) {
@@ -61,6 +62,8 @@ export default class GuestPass extends SlashCommand {
 		if (guestUser.user.bot) {
 			return ctx.send('Bots can\'t be a mechanic!');
 		}
+        const fork = getinfo()
+
 
 
         //check if user forked the project repo
