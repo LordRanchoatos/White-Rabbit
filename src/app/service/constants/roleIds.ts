@@ -8,4 +8,5 @@ export default Object.freeze({
   govstarter: process.env.DISCORD_ROLE_GOVSTARTER,
   mhlauncher: process.env.DISCORD_ROLE_MHLAUNCHER,
   kpmhlauncher: process.env.DISCORD_ROLE_KPMHLAUNCHER,
+  kpmechanic: process.env.DISCORD_ROLE_KPMECHANIC,
 });

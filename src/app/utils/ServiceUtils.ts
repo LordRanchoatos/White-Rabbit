@@ -19,6 +19,11 @@ const ServiceUtils = {
       return role.id === roleIds.kpmhlauncher;
     });
   },
+  getGuestRoleMechanic(roles: RoleManager): Role {
+    return roles.cache.find((role) => {
+      return role.id === roleIds.kpmechanic;
+    });
+  },
 };
 
 export default ServiceUtils;
