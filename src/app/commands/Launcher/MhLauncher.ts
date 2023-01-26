@@ -8,7 +8,7 @@ import {
 import client from '../../App';
 import roleIds from '../../service/constants/roleIds';
 import { addmhlauncherToUser } from '../../service/role/Addmhlauncher';
-import ServiceUtils from '../../utils/ServiceUtils';
+import ServiceUtils from '../../utils/serviceUtils';
 import discordServerIds from '../../service/constants/discordServerIds';
 import Log, { LogUtils } from '../../utils/Log';
 import { command } from '../../utils/SentryUtils';

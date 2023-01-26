@@ -5,13 +5,13 @@ import {
   CommandContext,
   SlashCreator,
 } from 'slash-create';
-import client from '../../app';
+import client from '../../App';
 import roleIds from '../../service/constants/roleIds';
 import { addMechanicRoleToUser } from '../../service/role/AddMechanicRole';
 import discordServerIds from '../../service/constants/discordServerIds';
 import Log, { LogUtils } from '../../utils/Log';
 import { command } from '../../utils/SentryUtils';
-import { getinfo } from '../../../app/service/github/checkRepo';
+import { getinfo } from '../../service/github/checkRepo';
 
 export default class GuestPass extends SlashCommand {
   constructor(creator: SlashCreator) {
@@ -65,7 +65,6 @@ export default class GuestPass extends SlashCommand {
     const fork = getinfo(ctx.options.username);
 
 
-    // check if user forked the project repo
     try {
       if(fork) {
         await addMechanicRoleToUser(guestUser);
