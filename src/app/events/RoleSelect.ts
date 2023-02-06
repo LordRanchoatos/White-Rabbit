@@ -24,12 +24,21 @@ export default class implements DiscordEvent {
 
     const hasRole = interaction.member.roles.cache.has(role.id);
     if(!hasRole) {
-      return await interaction.member.roles.add(role).then((member) => {
+      try {
+        interaction.member.roles.add(role).then((member) => {
+          interaction.reply({
+            content: `The ${role} role was added to you ${member}`,
+            ephemral: true,
+          });
+        });
+        
+      } catch(e) {
         interaction.reply({
-          content: `The ${role} role was added to you ${member}`,
+          content: 'The role not added to you',
           ephemral: true,
         });
-      });
+        Log.error(e);
+      }
     } else {
       interaction.reply({
         content: 'You already have the role',
