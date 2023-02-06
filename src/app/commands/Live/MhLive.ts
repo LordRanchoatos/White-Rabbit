@@ -13,17 +13,17 @@ import Log, { LogUtils } from '../../utils/Log';
 import { command } from '../../utils/SentryUtils';
 import { getinfo } from '../../service/github/checkRepo';
 
-export default class GuestPass extends SlashCommand {
+export default class Golive extends SlashCommand {
   constructor(creator: SlashCreator) {
     super(creator, {
-      name: 'mhlive',
-      description: 'Grant the Mechanic Role',
+      name: 'golive',
+      description: 'grant the mechanic role',
       guildIDs: [discordServerIds.kingPin, discordServerIds.discordBotGarage],
       options: [
         {
           type: CommandOptionType.STRING,
-          name: 'username',
-          description: 'Grant the Mechanic Role:',
+          name: 'id',
+          description: 'Grant the Mechanic Role',
           required: true,
         },
       ],

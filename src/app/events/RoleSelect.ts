@@ -14,48 +14,32 @@ export default class implements DiscordEvent {
   once = true;
 
   async execute(interaction): Promise<any> {
+    if(!interaction.isButton) return;
 
-    if (!interaction.isChatInputCommand || interaction.isButton()) {
-      const role = interaction.guild.roles.cache.get(
-        ROLES[interaction.customId],
-      );
-    
-      if (!role) return interaction.reply({ content: 'Role not found', ephemeral: true });
-    
-      const hasRole = interaction.member.roles.cache.has(role.id);
-    
-      if (hasRole) {
-        return await interaction.member.roles
-          .remove(role)
-          .then((member) =>
-            interaction.reply({
-              content: `The ${role} role was removed to you ${member}`,
-              ephemeral: true,
-            }),
-          )
-          .catch((member) => {
-            return interaction.reply({
-              content: `Something went wrong. The ${role} role was not removed to you ${member}`,
-              ephemeral: true,
-            });
-          });
-      } else {
-        return await interaction.member.roles
-          .add(role)
-          .then((member) =>
-            interaction.reply({
-              content: `The ${role} role was added to you ${member}`,
-              ephemeral: true,
-            }),
-          )
-          .catch((member) => {
-            return interaction.reply({
-              content: `Something went wrong. The ${role} role was not added to you ${member}`,
-              ephemeral: true,
-            });
-          });
-      }
+    const role = interaction.guild.roles.cache.get(
+      ROLES[interaction.customId],
+    );
+
+    if(!role) return interaction.reply({ content: 'Role not found', ephemeral: true });
+
+    const hasRole = interaction.member.roles.cache.has(role.id);
+    if(!hasRole) {
+      return await interaction.member.roles.add(role).then((member) => {
+        interaction.reply({
+          content: `The ${role} role was added to you ${member}`,
+          ephemral: true,
+        });
+      });
+    } else {
+      interaction.reply({
+        content: 'You already have the role',
+        ephemeral: true,
+      });
     }
+
+
+    Log.info(hasRole);
+    
   }
 }
 

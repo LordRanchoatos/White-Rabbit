@@ -1,22 +1,19 @@
 import {
   SlashCommand,
-  CommandOptionType,
-  ApplicationCommandPermissionType,
   CommandContext,
   SlashCreator,
 } from 'slash-create';
 import client from '../../App';
-import roleIds from '../../service/constants/roleIds';
 import { addmhstarterToUser } from '../../service/role/Addmhstarter';
 import discordServerIds from '../../service/constants/discordServerIds';
 import Log, { LogUtils } from '../../utils/Log';
 import { command } from '../../utils/SentryUtils';
 
-export default class madhatterStarter extends SlashCommand {
+export default class Madhatter extends SlashCommand {
   constructor(creator: SlashCreator) {
     super(creator, {
       name: 'madhatter',
-      description: 'To get the Mad Hatter starter Role',
+      description: 'to get the madhatter starter role',
       guildIDs: [discordServerIds.kingPin, discordServerIds.discordBotGarage],
       throttling: {
         usages: 2,
@@ -84,7 +81,7 @@ export default class madhatterStarter extends SlashCommand {
       await addmhstarterToUser(guestUser);
       await ctx.send({ embeds: [infoEmbed], ephemeral: true });
     } catch (e) {
-      LogUtils.logError('failed to mhstarter to user', e);
+      LogUtils.logError('failed to add mhstarter to user', e);
     }
   }
 }

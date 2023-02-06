@@ -1,5 +1,4 @@
 import { Client, Guild } from 'discord.js';
-import constants from '../service/constants/constants';
 import { DiscordEvent } from '../types/discord/DiscordEvent';
 import Log, { LogUtils } from '../utils/Log';
 

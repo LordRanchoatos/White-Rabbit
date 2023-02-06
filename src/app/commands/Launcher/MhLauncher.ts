@@ -13,17 +13,17 @@ import discordServerIds from '../../service/constants/discordServerIds';
 import Log, { LogUtils } from '../../utils/Log';
 import { command } from '../../utils/SentryUtils';
 
-export default class Coordinape extends SlashCommand {
+export default class Launcher extends SlashCommand {
   constructor(creator: SlashCreator) {
     super(creator, {
-      name: 'mhlauncher',
-      description: 'Accepts bot ID and grant the MhLuncher Role',
+      name: 'launcher',
+      description: 'accepts bot id and grant the mhluncher role',
       guildIDs: [discordServerIds.kingPin, discordServerIds.discordBotGarage],
       options: [
         {
           type: CommandOptionType.SUB_COMMAND_GROUP,
-          name: 'bot invite',
-          description: 'Grant mhlauncher role to:',
+          name: 'invite',
+          description: 'grant mhlauncher role to',
           required: true,
         },
       ],
@@ -34,7 +34,7 @@ export default class Coordinape extends SlashCommand {
       defaultPermission: true,
     });
   }
-@command
+
   async run(ctx: CommandContext): Promise<any> {
     LogUtils.logCommandStart(ctx);
     if (ctx.user.bot) return;
