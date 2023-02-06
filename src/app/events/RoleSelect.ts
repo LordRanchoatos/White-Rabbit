@@ -7,6 +7,7 @@ const ROLES = {
   mhstarter: '1060180531729416223',
   govstarter: '1060180885586055168',
 };
+const channelId = process.env.DISCORD_CHANNEL_WELCOME_KP;
 
 
 export default class implements DiscordEvent {
@@ -30,8 +31,8 @@ export default class implements DiscordEvent {
             content: `The ${role} role was added to you ${member}`,
             ephemral: true,
           });
-        });
-        
+        })
+          .catch(error => Log.error(error));
       } catch(e) {
         interaction.reply({
           content: 'The role not added to you',
@@ -45,6 +46,13 @@ export default class implements DiscordEvent {
         ephemeral: true,
       });
     }
+
+    const channel = interaction.member.guild.channels.cache.get(channelId);
+    const thread = await channel.threads.create({
+      name: 'food-talk',
+      autoArchiveDuration: 60,
+      reason: 'Needed a separate thread for food',
+    });
 
 
     Log.info(hasRole);
