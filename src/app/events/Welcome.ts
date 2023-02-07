@@ -23,7 +23,7 @@ export default class implements DiscordEvent {
 
     const embed = new EmbedBuilder()
       .setColor(0x0099FF)
-      .setTitle('select Project')
+      .setTitle('Select Project')
       .setURL('https://discord.js.org')
       .setDescription('Select the project you will like to contribute to.');
 
@@ -32,7 +32,7 @@ export default class implements DiscordEvent {
         const message = `<@${member.id}> Welcome to the garage, Let's get you down the Rabbit hole! `;
         const channel = member.guild.channels.cache.get(channelId) as TextChannel;
         channel.send(message);
-        channel.send({ content: 'I think you should,', embeds: [embed], components: [row] });
+        channel.send({ content: 'Welcome', embeds: [embed], components: [row] });
       });
     
     } catch (e) {
