@@ -1,6 +1,6 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, Client, Guild } from 'discord.js';
 import Log, { LogUtils } from '../utils/Log';
-import { GuildMemberRoleManager } from 'discord.js';
+import { GuildMemberRoleManager, GuildTextThreadManager, ChannelType } from 'discord.js';
 import { DiscordEvent } from '../types/discord/DiscordEvent';
 
 const ROLES = {
@@ -49,13 +49,13 @@ export default class implements DiscordEvent {
 
     const channel = interaction.member.guild.channels.cache.get(channelId);
     const thread = await channel.threads.create({
-      name: 'food-talk',
+      name: 'MadHatter',
       autoArchiveDuration: 60,
-      reason: 'Needed a separate thread for food',
-    });
-
-
-    Log.info(hasRole);
+      type: ChannelType.PrivateThread,
+      reason: 'A private thread to onboard you.',
+    }).then(threadChannel => Log.info(`${threadChannel} thread created`))
+      .catch(error => Log.error(error));
+    await thread.member.add(interaction.member.id);
     
   }
 }

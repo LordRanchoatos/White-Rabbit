@@ -17,22 +17,21 @@ export default class implements DiscordEvent {
       .addComponents(
         new ButtonBuilder()
           .setCustomId('mhstarter')
-          .setLabel('Click me!')
+          .setLabel('Mad Hatter')
           .setStyle(ButtonStyle.Primary),
       );
 
     const embed = new EmbedBuilder()
       .setColor(0x0099FF)
-      .setTitle('Some title')
+      .setTitle('select Project')
       .setURL('https://discord.js.org')
-      .setDescription('Some description here');
+      .setDescription('Select the project you will like to contribute to.');
 
     try {
       client.on('guildMemberAdd', (member: GuildMember) => {
         const message = `<@${member.id}> Welcome to the garage, Let's get you down the Rabbit hole! `;
         const channel = member.guild.channels.cache.get(channelId) as TextChannel;
         channel.send(message);
-        // reply with a button
         channel.send({ content: 'I think you should,', embeds: [embed], components: [row] });
       });
     
