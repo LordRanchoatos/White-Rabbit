@@ -13,6 +13,6 @@
         "moduleResolution": "node",
         "resolveJsonModule": true
     },
-    "include": ["src/**/*.ts", "src/app/events/Welcome.ts"],
+    "include": ["src/**/*.ts"],
     "exclude": ["node_modules"]
 }
