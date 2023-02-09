@@ -51,6 +51,7 @@ export default class implements DiscordEvent {
     const thread = await channel.threads.create({
       name: 'MadHatter',
       autoArchiveDuration: 60,
+      type: ChannelType.PrivateThread,
       reason: 'A private thread to onboard you.',
     });
 
