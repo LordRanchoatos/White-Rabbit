@@ -54,6 +54,8 @@ export default class implements DiscordEvent {
       reason: 'A private thread to onboard you.',
     });
 
+    const threadx = channel.threads.cache.find(x => x.name === 'MadHatter');
+    await threadx.members.add('1054432860855078992');
     
   }
 }
