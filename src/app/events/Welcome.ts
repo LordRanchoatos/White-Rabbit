@@ -25,14 +25,12 @@ export default class implements DiscordEvent {
       .setColor(0x0099FF)
       .setTitle('Select Project')
       .setURL('https://discord.js.org')
-      .setDescription('Select the project you will like to contribute to.');
+      .setDescription('To contribute to a project in the garage, click the corresponding button below');
 
     try {
       client.on('guildMemberAdd', (member: GuildMember) => {
-        const message = `<@${member.id}> Welcome to the garage, Let's get you down the Rabbit hole! `;
         const channel = member.guild.channels.cache.get(channelId) as TextChannel;
-        channel.send(message);
-        channel.send({ content: 'Welcome', embeds: [embed], components: [row] });
+        channel.send({ content: `<@${member.id}> Welcome to the garage, Let's get you down the Rabbit hole! `, embeds: [embed], components: [row] });
       });
     
     } catch (e) {
