@@ -1,7 +1,7 @@
 {
     "name": "White-Rabbit",
     "version": "1.0.0",
-    "description": "description here",
+    "description": "bot Onboards new devs into the garage.",
     "main": "app.js",
     "private": true,
     "scripts": {
